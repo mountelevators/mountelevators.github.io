@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mount Elevators | Elevators & Lift Solutions</title>
+<meta name="description" content="Mount Elevators - Installation, Modernization, AMC & Repair Services for Residential and Commercial Lifts.">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+body{
+    color:#333;
+    line-height:1.6;
+}
+header{
+    background:#0b4f9c;
+    color:#fff;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+}
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+nav a{
+    color:white;
+    text-decoration:none;
+    margin-left:20px;
+}
+.hero{
+    background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
+    url('https://images.unsplash.com/photo-1529429617124-aee711a5ac1f?auto=format&fit=crop&w=1600&q=80') center/cover;
+    color:white;
+    text-align:center;
+    padding:120px 20px;
+}
+.hero h1{
+    font-size:48px;
+}
+.hero p{
+    font-size:20px;
+    margin:20px 0;
+}
+.btn{
+    display:inline-block;
+    padding:14px 28px;
+    background:#ff9800;
+    color:white;
+    text-decoration:none;
+    border-radius:6px;
+    margin:8px;
+}
+section{
+    padding:70px 8%;
+}
+.section-title{
+    text-align:center;
+    margin-bottom:40px;
+    color:#0b4f9c;
+    font-size:34px;
+}
+.services{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
+}
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+    transition:.3s;
+}
+.card:hover{
+    transform:translateY(-8px);
+}
+.card h3{
+    color:#0b4f9c;
+    margin-bottom:10px;
+}
+.about{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:center;
+}
+.about img{
+    width:100%;
+    border-radius:10px;
+}
+.contact{
+    background:#f4f4f4;
+}
+form{
+    max-width:650px;
+    margin:auto;
+}
+input,textarea{
+    width:100%;
+    padding:15px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+button{
+    width:100%;
+    background:#0b4f9c;
+    color:white;
+    border:none;
+    padding:15px;
+    font-size:18px;
+    border-radius:6px;
+    cursor:pointer;
+}
+footer{
+    background:#0b4f9c;
+    color:white;
+    text-align:center;
+    padding:20px;
+}
+.floating{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+}
+.floating a{
+    display:block;
+    margin-top:10px;
+    text-decoration:none;
+    color:white;
+    padding:14px 20px;
+    border-radius:50px;
+    text-align:center;
+    font-weight:bold;
+}
+.call{
+    background:#0b4f9c;
+}
+.whatsapp{
+    background:#25D366;
+}
+@media(max-width:768px){
+.about{
+grid-template-columns:1fr;
+}
+.hero h1{
+font-size:34px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo">Mount Elevators</div>
+
+<nav>
+<a href="#about">About</a>
+<a href="#services">Services</a>
+<a href="#contact">Contact</a>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>Safe. Reliable. Modern.</h1>
+
+<p>Professional Elevator Installation, Maintenance & Repair Services</p>
+
+<a href="tel:+919844217057" class="btn">Call Now</a>
+
+<a href="https://wa.me/919844217057" class="btn">WhatsApp</a>
+
+</section>
+
+<section id="about">
+
+<h2 class="section-title">About Us</h2>
+
+<div class="about">
+
+<div>
+
+<h3>Mount Elevators</h3>
+
+<p>
+Mount Elevators provides professional elevator installation,
+Annual Maintenance Contracts (AMC), modernization,
+and repair services for residential, commercial,
+industrial and hospital buildings.
+
+Our experienced engineers ensure quality workmanship,
+timely support and customer satisfaction.
+</p>
+
+</div>
+
+<img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80">
+
+</div>
+
+</section>
+
+<section id="services">
+
+<h2 class="section-title">Our Services</h2>
+
+<div class="services">
+
+<div class="card">
+<h3>Elevator Installation</h3>
+<p>Residential, Commercial & Industrial Lift Installation.</p>
+</div>
+
+<div class="card">
+<h3>AMC</h3>
+<p>Annual Maintenance Contracts for all brands of elevators.</p>
+</div>
+
+<div class="card">
+<h3>Modernization</h3>
+<p>Upgrade old elevators with latest technology.</p>
+</div>
+
+<div class="card">
+<h3>Emergency Repairs</h3>
+<p>Fast response repair services to minimize downtime.</p>
+</div>
+
+</div>
+
+</section>
+
+<section class="contact" id="contact">
+
+<h2 class="section-title">Contact Us</h2>
+
+<form id="contactForm">
+
+<input type="text" id="name" placeholder="Your Name" required>
+
+<input type="tel" id="phone" placeholder="Mobile Number" required>
+
+<input type="email" id="email" placeholder="Email Address">
+
+<textarea id="message" rows="5" placeholder="Tell us about your requirement"></textarea>
+
+<button type="submit">
+Send via WhatsApp
+</button>
+
+</form>
+
+</section>
+
+<footer>
+
+<h3>Mount Elevators</h3>
+
+<p>📞 +91 98442 17057</p>
+
+<p>Professional Lift Installation • AMC • Repairs • Modernization</p>
+
+<p>© 2026 Mount Elevators. All Rights Reserved.</p>
+
+</footer>
+
+<div class="floating">
+
+<a class="call" href="tel:+919844217057">
+📞 Call Now
+</a>
+
+<a class="whatsapp" href="https://wa.me/919844217057">
+WhatsApp
+</a>
+
+</div>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let message=document.getElementById("message").value;
+
+let text=
+`New Inquiry from Website
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Requirement:
+${message}`;
+
+let url="https://wa.me/919844217057?text="+encodeURIComponent(text);
+
+window.open(url,"_blank");
+
+});
+</script>
+
+</body>
+</html>
