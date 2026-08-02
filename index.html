@@ -3,501 +3,800 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mount Elevators — Hero</title>
-  <link rel="stylesheet" href="static/css/style.css" />
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <title>Mount Elevators</title>
+  <meta name="description" content="Premium elevator solutions for homes and businesses." />
+  <link rel="stylesheet" href="./static/css/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <style>
-    /* Minimal overrides for the hero page */
-    html, body { height: 100%; }
-    body { margin:0; padding:0; background-color:#000; background-image: url('static/standard_image/hero_with_logo.png'); background-size: cover; background-position: center center; background-repeat: no-repeat; }
-    .hero-canvas-wrap { position: relative; width: 100%; height: 100vh; overflow: hidden; background: transparent; }
-    #hero-canvas { width: 100%; height: 100%; display: block; }
-    .hero-overlay-content { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; z-index:3; pointer-events:none }
-    .hero-logo { pointer-events:auto; text-align:center; color:#ffdca6; }
-    .hero-logo h1 { font-size: 4rem; color: #ffdca6; margin-bottom: 8px; }
-    .hero-sub { color:rgba(255,220,166,0.85); font-size:1.1rem }
-    .hero-cta { margin-top:18px; pointer-events:auto }
-    .hero-cta a { margin:0 8px }
+    :root {
+      --bg: #060606;
+      --panel: rgba(255,255,255,0.06);
+      --text: #f8f2e8;
+      --muted: #cbb78f;
+      --gold: #f4b942;
+      --gold-strong: #e4a22e;
+      --border: rgba(255,255,255,0.15);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      background: linear-gradient(10deg, rgba(5, 5, 5, 0.427), rgba(13, 13, 13, 0.326)),
+                  url('./static/standard_image/hero_with_logo.png') center/cover no-repeat fixed;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(6,6,6,0.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo img { height: 44px; width: auto; }
+    .nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
+    .nav-links a { color: var(--text); opacity: 0.95; }
+    .nav-links a:hover { color: var(--gold); }
+
+    .hero {
+      min-height: calc(100vh - 78px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 20px;
+      text-align: center;
+    }
+
+    .hero-card {
+      width: min(100%, 900px);
+      padding: 48px 32px;
+      border: 1px solid var(--border);
+      background: rgba(8,8,8,0.72);
+      border-radius: 24px;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.3);
+    }
+
+    .hero-card h1 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      margin: 0 0 14px;
+      color: var(--gold);
+      line-height: 1.1;
+    }
+
+    .hero-card p { font-size: 1.08rem; color: var(--muted); margin: 0 auto 24px; max-width: 720px; }
+
+    .hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
+    }
+    .btn-primary {
+     background: rgba(244, 185, 66, 0.14);
+      border: 1px solid rgba(244, 185, 66, 0.6);
+      color: var(--gold);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 50px rgba(244, 185, 66, 0.28);
+    }
+    .btn-secondary {
+      background: rgba(244, 185, 66, 0.14);
+      border: 1px solid rgba(244, 185, 66, 0.6);
+      color: var(--gold);
+    }
+    .btn-secondary:hover {
+      transform: scale(1.02);
+      background: rgba(244, 185, 66, 0.24);
+      box-shadow: 0 12px 36px rgba(244, 185, 66, 0.18);
+    }
+
+    .section {
+      padding: 72px 20px;
+      background: rgba(0,0,0,0.25);
+      border-top: 1px solid var(--border);
+    }
+
+    .section h2 { color: var(--gold); text-align: center; margin-bottom: 18px; }
+    .section p { color: #e8dcc4; max-width: 780px; margin: 0 auto 28px; text-align: center; }
+
+    .grid { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+    }
+    .card h3 { color: var(--gold); margin-top: 0; }
+    .card ul { padding-left: 18px; color: #f2e7cf; }
+
+    .company-story {
+      padding: 80px 0;
+    }
+
+    .story-content {
+      display: flex;
+    flex-direction: row;       /* Items sit side-by-side */
+  justify-content: flex-start; /* Moves items to the left */
+  align-items: center; 
+    }
+
+    .story-text {
+      line-height: 1.8;
+      color: #e8dcc4;
+    }
+
+    .story-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .story-image img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    .company-stats {
+      padding: 80px 0;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+    }
+
+    .stat-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+
+    .stat-icon i {
+      font-size: 1.4rem;
+      color: #161616;
+    }
+
+    .stat-number {
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      color: #d6c29a;
+      font-weight: 500;
+    }
+
+    .mission-vision {
+      padding: 80px 0;
+    }
+
+    .mv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .mv-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
+      text-align: center;
+    }
+
+    .mv-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .mv-icon i {
+      color: #161616;
+      font-size: 1.8rem;
+    }
+
+    .mv-card p {
+      color: #e8dcc4;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .core-values {
+      padding: 80px 0;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .value-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.14);
+      text-align: center;
+      transition: transform 0.25s ease;
+    }
+
+    .value-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .value-icon {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .value-icon i {
+      color: #161616;
+      font-size: 1.6rem;
+    }
+
+    .value-card p {
+      color: #e8dcc4;
+      margin: 0;
+    }
+
+    .leadership-team {
+      padding: 80px 0;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .team-member {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.16);
+      transition: transform 0.25s ease;
+    }
+
+    .team-member:hover {
+      transform: translateY(-5px);
+    }
+
+    .member-image {
+      height: 200px;
+      background: linear-gradient(135deg, rgba(244,185,66,0.18), rgba(244,185,66,0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .member-image i {
+      font-size: 3rem;
+      color: var(--gold);
+    }
+
+    .member-info {
+      padding: 1.5rem;
+    }
+
+    .member-title {
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 900px) {
+      .story-content {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-box {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .contact-box a { color: var(--gold); }
+
+    .contact-form {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .contact-form label {
+      display: grid;
+      gap: 8px;
+      font-size: 0.95rem;
+      color: #d6c29a;
+    }
+
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      background: rgba(0,0,0,0.55);
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .contact-form select {
+      background: rgba(0,0,0,0.7);
+      color: var(--text);
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--text) 50%), linear-gradient(135deg, var(--text) 50%, transparent 50%);
+      background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 13px) calc(1em + 2px);
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+    }
+
+    .contact-form select:hover,
+    .contact-form select:focus {
+      border-color: var(--gold);
+      background: rgba(0,0,0,0.85);
+      box-shadow: 0 0 0 3px rgba(244, 185, 66, 0.14);
+    }
+
+    .contact-form select option {
+      background: rgba(5,5,5,0.95);
+      color: var(--text);
+    }
+
+    .contact-form select option:hover,
+    .contact-form select option:focus,
+    .contact-form select option:checked {
+      background: var(--gold);
+      color: #121212;
+    }
+
+    .contact-form textarea { min-height: 150px; resize: vertical; }
+
+    .contact-form button {
+      width: fit-content;
+      background: linear-gradient(135deg, var(--gold), var(--gold-strong));
+      color: #161616;
+      border: none;
+      padding: 14px 26px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-form button:hover { transform: translateY(-2px); }
+
+    .contact-status { margin-top: 12px; color: #c9b787; }
+
+    .footer {
+      padding: 60px 20px;
+      background: rgba(0,0,0,0.32);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-column h3 { margin-bottom: 16px; color: var(--gold); }
+    .footer-column p,
+    .footer-column a,
+    .footer-column li { color: #e8dcc4; opacity: 0.92; }
+    .footer-column a { display: inline-flex; align-items: center; gap: 8px; }
+    .footer-links li { margin-bottom: 10px; list-style: none; }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      color: #9a8a63;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 720px) {
+      
+      .nav-links { display: none; }
+    }
   </style>
 </head>
-<body class="home-dark">
+<body>
   <header class="site-header">
     <div class="nav-container">
-      <a class="nav-logo" href="/">
-        <img src="/static/standard_image/Logo.png" alt="Mount Elevators" style="height:44px;" />
+      <a class="nav-logo" href="#top">
+        <img src="./static/standard_image/logo.png" alt="Mount Elevators" />
       </a>
-      <button id="navBurger" class="nav-burger" aria-label="Toggle menu">☰</button>
+      <nav class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#products">Products</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </nav>
     </div>
-    <nav id="mobileNav" class="mobile-nav" aria-hidden="true">
-      <a href="#services">Services</a>
-      <a href="#products">Products</a>
-      <a href="#contact">Contact</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#about">About</a>
-    </nav>
   </header>
-  <div class="hero-canvas-wrap">
-    <!-- background image is applied to body for reliable display across browsers -->
 
-    <!-- No overlay: keep hero image only as requested -->
-  </div>
-
-  <!-- Page sections revealed on scroll -->
-  <main>
-    <div class="stacked-bg home-dark" >
-        
-      <section id="services" class="services-section content-section hidden">
-          <div class="container">
-              <div class="services-grid">
-                  {% for service in services %}
-                  <div class="service-card detailed">
-                      <div class="service-icon">
-                          <i class="fas fa-{{ 'wrench' if service.icon == 'install' else 'cogs' if service.icon == 'maintenance' else 'arrow-up' if service.icon == 'upgrade' else 'ambulance' }}"></i>
-                      </div>
-                      <h3>{{ service.title }}</h3>
-                      <p>{{ service.description }}</p>
-                      <div class="service-footer">
-                          <a href="#contact" class="btn btn-primary">Get Quote</a>
-                      </div>
-                  </div>
-                  {% endfor %}
-              </div>
-          </div>
-      </section>
-
-      <section id="products" class="products-section content-section hidden">
-      <div class="container">
-        <div class="product-filters" style="margin-bottom:18px;">
-          <div class="filter-buttons">
-            <a href="#products" class="filter-btn active">All Products</a>
-            <a href="#products" class="filter-btn">Residential</a>
-            <a href="#products" class="filter-btn">Commercial</a>
-          </div>
-        </div>
-
-        <div class="products-grid">
-          {% set all_elevators = elevators['residential'] + elevators['commercial'] %}
-          {% for elevator in all_elevators %}
-          <div class="product-card detailed">
-            <div class="product-image">
-              <div class="placeholder-image">
-                {% if elevator.id <= 2 %}
-                <i class="fas fa-home"></i>
-                {% else %}
-                <i class="fas fa-city"></i>
-                {% endif %}
-              </div>
-              <div class="product-overlay">
-                <a href="#contact" class="btn btn-primary btn-small">Enquire</a>
-              </div>
-            </div>
-            <div class="product-info">
-              <div class="product-category">{% if elevator.id <= 2 %}Residential{% else %}Commercial{% endif %}</div>
-              <h3>{{ elevator.name }}</h3>
-              <div class="product-specs">
-                <div class="spec"><i class="fas fa-users"></i><span>{{ elevator.capacity }}</span></div>
-                <div class="spec"><i class="fas fa-tachometer-alt"></i><span>{{ elevator.speed }}</span></div>
-              </div>
-              <div class="product-features">
-                {% for feature in elevator.features %}
-                <span class="feature-tag">{{ feature }}</span>
-                {% endfor %}
-              </div>
-            </div>
-          </div>
-          {% endfor %}
+  <main id="top">
+    <section class="hero">
+      <div class="hero-card">
+        <h1>Elevating comfort with premium solutions</h1>
+        <p>Mount Elevators delivers modern residential and commercial elevator systems with dependable service, elegant design, and expert installation.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Request a Quote</a>
+          <a class="btn btn-secondary" href="#products">Explore Products</a>
         </div>
       </div>
     </section>
 
-      <section id="contact" class="content-section hidden">
-        <div class="container">
-          <h2>Contact</h2>
-        <div class="contact-form-container">
-          <form id="contactForm" class="contact-form">
-            <div class="form-row">
-              <div class="form-group">
-                <input name="name" placeholder="Name" required />
-              </div>
-              <div class="form-group">
-                <input name="email" type="email" placeholder="Email" required />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group">
-                <input name="phone" placeholder="Phone" />
-              </div>
-              <div class="form-group">
-                <input name="company" placeholder="Company" />
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group" style="width:100%;">
-                <select name="service_type">
-                  <option value="">Select Service</option>
-                  {% for s in services %}
-                  <option value="{{ s.title }}">{{ s.title }}</option>
-                  {% endfor %}
-                </select>
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-group" style="width:100%;">
-                <textarea name="message" rows="4" placeholder="Message"></textarea>
-              </div>
-            </div>
-            <div class="form-row" style="justify-content:flex-start; gap:1rem;">
-              <button type="submit" class="btn btn-primary">Send</button>
-              <span id="contactStatus"></span>
-            </div>
+    <section id="services" class="section">
+      <div class="container">
+        <h2>Services</h2>
+        <p>From installation to maintenance and modernization, our team supports you at every step.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Installation</h3>
+            <p>Professional setup with certified technicians.</p>
+          </div>
+          <div class="card">
+            <h3>Maintenance</h3>
+            <p>Reliable support plans to keep systems running smoothly.</p>
+          </div>
+          <div class="card">
+            <h3>Modernization</h3>
+            <p>Upgrade older systems with modern safety and design features.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <div class="container">
+        <h2>Featured Products</h2>
+        <p>Flexible options for homes, offices, and mixed-use properties.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>Home Comfort Pro</h3>
+            <ul>
+              <li>Energy efficient</li>
+              <li>Smooth operation</li>
+              <li>Modern finish</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Business Express</h3>
+            <ul>
+              <li>High-speed travel</li>
+              <li>Heavy-duty build</li>
+              <li>Smart controls</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Office Premium</h3>
+            <ul>
+              <li>Efficient traffic flow</li>
+              <li>Premium interior</li>
+              <li>Reliable performance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Contact</h2>
+        <div class="contact-box">
+          <p>For quotations or service requests, please fill the form below or contact us directly using WhatsApp, email, or phone.</p>
+          <form class="contact-form" id="contactForm">
+            <label>
+              Name
+              <input type="text" id="name" name="name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" id="email" name="email" required />
+            </label>
+            <label>
+              Phone
+              <input type="tel" id="phone" name="phone" required />
+            </label>
+            <label>
+              Message
+              <textarea id="message" name="message" required></textarea>
+            </label>
+            <label>
+              Contact via
+              <select id="contactMethod" name="contact_method">
+                <option value="whatsapp">WhatsApp</option>
+                <option value="email">Email</option>
+              </select>
+            </label>
+            <button type="submit">Send Request</button>
+            <div class="contact-status" id="contactStatus"></div>
           </form>
         </div>
       </div>
     </section>
 
-      <section id="reviews" class="content-section hidden">
-        <div class="container">
-          <h2>Reviews</h2>
-        <div class="cards">
-          {% for r in reviews %}
-          <div class="card">
-            <h3>{{ r.name }} — {{ r.rating }}/5</h3>
-            <p>{{ r.message }}</p>
-            <small>{{ r.date }}</small>
-          </div>
-          {% endfor %}
-        </div>
-      </div>
-    </section>
-
-      <section id="about" class="about-section content-section hidden">
-        <div class="container">
+    <section id="about" class="section">
+      <div class="container">
         <div class="story-content">
           <div class="story-text">
             <h2>About MountElevators</h2>
-            <p>Leading the elevator industry with innovation, quality, and exceptional service since {{ company_info.founded }}.</p>
-            <p>Founded in {{ company_info.founded }}, MountElevators began as a small family business with a vision to transform vertical transportation. What started as a local elevator service company has grown into a trusted leader in elevator technology and innovation.</p>
-            <p>Over the years, we have consistently pushed the boundaries of what&apos;s possible in elevator design and functionality. Our commitment to safety, efficiency, and customer satisfaction has made us the preferred choice for residential and commercial elevator solutions.</p>
-            <p>Today, we serve clients across India, with a team of {{ company_info.team_size }} dedicated professionals who share our passion for excellence and innovation in vertical transportation.</p>
+            <p>Leading the elevator industry with innovation, quality, and exceptional service since 2009.</p>
+            <p>Founded as a small family business, MountElevators has grown into a trusted vertical transportation provider with a focus on modern design, safety, and excellent customer experiences.</p>
+            <p>We serve clients across India with a team of dedicated professionals committed to delivering premium elevator solutions for residential and commercial projects.</p>
           </div>
           <div class="story-image">
-            <img src="static/standard_image/Logo.png" alt="MountElevators Logo" style="width: 100%; height: auto; object-fit: contain; border-radius: 20px;" />
+            <img src="./static/standard_image/logo.png" alt="MountElevators Logo" style="width: 100%; height: auto; object-fit: contain;">
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="company-stats">
-          <div class="stats-grid">
-            <div class="stat-card stat-count">
-              <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
-              <div class="stat-number" data-target="{{ company_info.founded }}">0</div>
-              <div class="stat-label">Founded</div>
-            </div>
-            <div class="stat-card stat-count">
-              <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
-              <div class="stat-number" data-target="{{ company_info.projects_completed }}">0</div>
-              <div class="stat-label">Projects Completed</div>
-            </div>
-            <div class="stat-card stat-count">
-              <div class="stat-icon"><i class="fas fa-users"></i></div>
-              <div class="stat-number" data-target="{{ company_info.team_size }}">0</div>
-              <div class="stat-label">Team Members</div>
-            </div>
-            <div class="stat-card stat-count">
-              <div class="stat-icon"><i class="fas fa-globe"></i></div>
-              <div class="stat-number" data-target="{{ company_info.countries }}">0</div>
-              <div class="stat-label">Countries Served</div>
-            </div>
+    <section class="company-stats section">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="stat-number">2009</div>
+            <div class="stat-label">Founded</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+            <div class="stat-number">100+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-number">35</div>
+            <div class="stat-label">Team Members</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon"><i class="fas fa-globe"></i></div>
+            <div class="stat-number">1</div>
+            <div class="stat-label">Country Served</div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="mission-vision">
-          <div class="mv-grid">
-            <div class="mv-card">
-              <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
-              <h3>Our Mission</h3>
-              <p>To provide safe, reliable, and innovative elevator solutions that enhance quality of life and accessibility worldwide. We strive to exceed customer expectations through superior products, exceptional service, and continuous innovation.</p>
-            </div>
-            <div class="mv-card">
-              <div class="mv-icon"><i class="fas fa-eye"></i></div>
-              <h3>Our Vision</h3>
-              <p>To be the world&apos;s most trusted and innovative elevator company, setting new standards for safety, sustainability, and smart technology in vertical transportation while creating value for our customers, employees, and communities.</p>
-            </div>
+    <section class="mission-vision section">
+      <div class="container">
+        <div class="mv-grid">
+          <div class="mv-card">
+            <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+            <h3>Our Mission</h3>
+            <p>To provide safe, reliable, and innovative elevator solutions that enhance accessibility and convenience for people everywhere.</p>
+          </div>
+          <div class="mv-card">
+            <div class="mv-icon"><i class="fas fa-eye"></i></div>
+            <h3>Our Vision</h3>
+            <p>To be the most trusted elevator partner, setting new standards for safety, sustainability, and smart vertical transportation.</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="core-values">
-          <h2>Our Core Values</h2>
-          <div class="values-grid">
-            <div class="value-card">
-              <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
-              <h4>Safety First</h4>
-              <p>Safety is our top priority in everything we do. We maintain the highest standards and continuously innovate to protect our customers.</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon"><i class="fas fa-star"></i></div>
-              <h4>Excellence</h4>
-              <p>We strive for excellence in every aspect of our business, from product design to customer service.</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
-              <h4>Innovation</h4>
-              <p>We embrace innovation and technology to create smarter, more efficient elevator solutions.</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon"><i class="fas fa-handshake"></i></div>
-              <h4>Integrity</h4>
-              <p>We conduct business with honesty and transparency, building trust and long-lasting relationships.</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon"><i class="fas fa-leaf"></i></div>
-              <h4>Sustainability</h4>
-              <p>We are committed to environmental responsibility, developing energy-efficient solutions that minimize our footprint.</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon"><i class="fas fa-heart"></i></div>
-              <h4>Customer Focus</h4>
-              <p>Our customers are at the center of everything we do. We listen, understand, and deliver solutions that exceed expectations.</p>
-            </div>
+    <section class="core-values section">
+      <div class="container">
+        <h2>Our Core Values</h2>
+        <div class="values-grid">
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+            <h4>Safety First</h4>
+            <p>We maintain the highest safety standards in every project and solution.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-star"></i></div>
+            <h4>Excellence</h4>
+            <p>We deliver exceptional quality across design, installation, and service.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+            <h4>Innovation</h4>
+            <p>We embrace new technology to deliver smarter and more efficient elevators.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-handshake"></i></div>
+            <h4>Integrity</h4>
+            <p>Honesty and transparency are at the heart of every customer relationship.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-leaf"></i></div>
+            <h4>Sustainability</h4>
+            <p>We create energy-efficient solutions that respect the environment.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-icon"><i class="fas fa-heart"></i></div>
+            <h4>Customer Focus</h4>
+            <p>Our customers are central to every decision, from concept to completion.</p>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="leadership-team">
-          <h2>Leadership Team</h2>
-          <div class="team-grid">
-            <div class="team-member">
-              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
-              <div class="member-info"><h4>John Anderson</h4><p class="member-title">Chief Executive Officer</p><p class="member-bio">John brings over 25 years of experience in the elevator industry and leads our global operations with a focus on innovation and customer satisfaction.</p></div>
+    <section class="leadership-team section">
+      <div class="container">
+        <h2>Leadership Team</h2>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+            <div class="member-info">
+              <h4>John Anderson</h4>
+              <p class="member-title">Chief Executive Officer</p>
+              <p class="member-bio">John brings 25 years of elevator industry experience and leads our operations with innovation and customer focus.</p>
             </div>
-            <div class="team-member">
-              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
-              <div class="member-info"><h4>Sarah Chen</h4><p class="member-title">Chief Technology Officer</p><p class="member-bio">Sarah drives our technology strategy and innovation initiatives, ensuring MountElevators stays at the forefront of elevator technology.</p></div>
+          </div>
+          <div class="team-member">
+            <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+            <div class="member-info">
+              <h4>Sarah Chen</h4>
+              <p class="member-title">Chief Technology Officer</p>
+              <p class="member-bio">Sarah drives our innovation strategy and keeps MountElevators at the cutting edge of elevator technology.</p>
             </div>
-            <div class="team-member">
-              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
-              <div class="member-info"><h4>Michael Rodriguez</h4><p class="member-title">VP of Engineering</p><p class="member-bio">Michael oversees our engineering and product development teams, ensuring the highest quality and safety standards in all our elevator solutions.</p></div>
+          </div>
+          <div class="team-member">
+            <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+            <div class="member-info">
+              <h4>Michael Rodriguez</h4>
+              <p class="member-title">VP of Engineering</p>
+              <p class="member-bio">Michael ensures every solution meets the highest quality and safety standards.</p>
             </div>
-            <div class="team-member">
-              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
-              <div class="member-info"><h4>Emily Johnson</h4><p class="member-title">VP of Customer Service</p><p class="member-bio">Emily leads our customer service and support operations, ensuring exceptional service delivery and customer satisfaction globally.</p></div>
+          </div>
+          <div class="team-member">
+            <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+            <div class="member-info">
+              <h4>Emily Johnson</h4>
+              <p class="member-title">VP of Customer Service</p>
+              <p class="member-bio">Emily leads our customer service team to deliver exceptional support and satisfaction.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
 
-  <div class="floating-contacts">
-    <a href="https://wa.me/919844217057" target="_blank" class="floating-btn whatsapp-btn" data-tooltip="Chat on WhatsApp" aria-label="Contact us on WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-    <a href="mailto:info@mountelevators.com" class="floating-btn email-btn" data-tooltip="Send us an Email" aria-label="Send us an email">
-      <i class="fas fa-envelope"></i>
-    </a>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-container">
-      <div class="footer-content">
-        <div class="footer-section">
+    <footer class="footer">
+      <div class="footer-grid">
+        <div class="footer-column">
           <h3>MountElevators</h3>
           <p>Leading provider of premium elevator solutions worldwide. Quality, safety, and innovation in every lift.</p>
-          <div class="social-links">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+          <div style="margin-top:16px; display:flex; gap:12px;">
+            <a href="https://facebook.com" target="_blank" rel="noreferrer"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com" target="_blank" rel="noreferrer"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer"><i class="fab fa-instagram"></i></a>
           </div>
         </div>
-        <div class="footer-section">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="/">Home</a></li>
+
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#top">Home</a></li>
             <li><a href="#products">Products</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#reviews">Reviews</a></li>
-            <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </div>
-        <div class="footer-section">
-          <h4>Services</h4>
-          <ul>
-            <li><a href="#services">Installation</a></li>
-            <li><a href="#services">Maintenance</a></li>
-            <li><a href="#services">Modernization</a></li>
-            <li><a href="#contact">Emergency Repair</a></li>
+
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li>Installation</li>
+            <li>Maintenance</li>
+            <li>Modernization</li>
+            <li>Emergency Repair</li>
           </ul>
         </div>
-        <div class="footer-section">
-          <h4>Contact Info</h4>
-          <address class="contact-info" style="font-style: normal;">
-            <p><i class="fas fa-phone"></i> <a href="tel:+919844217057" style="color: inherit; text-decoration: none;">+91 9844217057</a></p>
-            <p><i class="fas fa-envelope"></i> <a href="mailto:info@mountelevators.com" style="color: inherit; text-decoration: none;">info@mountelevators.com</a></p>
-            <p><i class="fas fa-map-marker-alt"></i> #19/5/1 - Ground Floor, 3rd Main, 2nd Cross, Pipeline Road, Kasturba Nagar, Bengaluru, Karnataka, India - 560 026</p>
-          </address>
+
+        <div class="footer-column">
+          <h3>Contact Info</h3>
+          <p><a href="tel:+919844217057"><i class="fas fa-phone-alt"></i> +91 98442 17057</a></p>
+          <p><a href="mailto:info@mountelevators.com"><i class="fas fa-envelope"></i> info@mountelevators.com</a></p>
+          <p><i class="fas fa-map-marker-alt"></i> #19/5/1 - Ground Floor, 3rd Main, 2nd Cross, Pipeline Rd,<br />Kasturba Nagar, Bengaluru, Karnataka, India - 560 026</p>
         </div>
       </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 MountElevators. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+      <div class="footer-bottom">© 2026 MountElevators. All rights reserved.</div>
+    </footer>
+  </main>
 
   <script>
-    // Reveal sections as they enter the viewport
-    document.addEventListener('DOMContentLoaded', function(){
-      const observer = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            entry.target.classList.remove('hidden');
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
+    const form = document.getElementById('contactForm');
+    const status = document.getElementById('contactStatus');
 
-      document.querySelectorAll('.content-section').forEach(el=>observer.observe(el));
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
 
-      // Counter animation for homepage stats
-      const countSections = document.querySelectorAll('.stat-count');
-      const animateCount = (el) => {
-        const numberEl = el.querySelector('.stat-number');
-        const target = numberEl.dataset.target;
-        if (!target || numberEl.dataset.animated) return;
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const method = document.getElementById('contactMethod').value;
 
-        const normalized = target.replace('+', '');
-        const maxValue = isNaN(normalized) ? parseInt(normalized, 10) : parseInt(normalized, 10);
-        const duration = 1200;
-        let start = 0;
-        const increment = Math.ceil(maxValue / (duration / 16));
-
-        const step = () => {
-          start += increment;
-          if (start >= maxValue) {
-            numberEl.textContent = target;
-            numberEl.dataset.animated = 'true';
-          } else {
-            numberEl.textContent = start;
-            requestAnimationFrame(step);
-          }
-        };
-
-        step();
-      };
-
-      const statObserver = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            animateCount(entry.target);
-            statObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.4 });
-
-      countSections.forEach(el=>statObserver.observe(el));
-
-      // Mobile nav toggle
-      const navBurger = document.getElementById('navBurger');
-      const mobileNav = document.getElementById('mobileNav');
-      if(navBurger && mobileNav){
-        navBurger.addEventListener('click', ()=>{
-          mobileNav.classList.toggle('open');
-          const opened = mobileNav.classList.contains('open');
-          mobileNav.setAttribute('aria-hidden', !opened);
-        });
-
-        mobileNav.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileNav.classList.remove('open')));
+      if (!name || !email || !phone || !message) {
+        status.textContent = 'Please fill out all fields before sending.';
+        return;
       }
 
-      // Contact form submit with fetch
-      const contactForm = document.getElementById('contactForm');
-      if(contactForm){
-        contactForm.addEventListener('submit', async (e)=>{
-          e.preventDefault();
-          const data = new FormData(contactForm);
-          const status = document.getElementById('contactStatus');
-          try{
-            const res = await fetch('/submit_contact', { method:'POST', body: data });
-            const json = await res.json();
-            if(json.status === 'success'){
-              status.textContent = json.message;
-              contactForm.reset();
-            } else {
-              status.textContent = json.message || 'Error sending message';
-            }
-          }catch(err){ status.textContent = 'Network error'; }
-        });
-      }
-    });
-  </script>
+      status.textContent = 'Preparing your request...';
 
-  <style>
-    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 60; }
-    .nav-container { max-width:1200px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
-    .nav-burger { background: transparent; border: 2px solid rgba(255,255,255,0.08); color: var(--paper); font-size:20px; padding:8px 10px; border-radius:8px; }
-    .mobile-nav { position:fixed; right:12px; top:64px; background: rgba(11,11,11,0.95); color:var(--paper); border-radius:8px; padding:12px; display:flex; flex-direction:column; gap:8px; box-shadow:0 10px 30px rgba(0,0,0,0.6); opacity:0; transform: translateY(-10px) scale(0.98); transition: all 200ms ease; pointer-events:none }
-    .mobile-nav.open { opacity:1; transform:none; pointer-events:auto }
-
-    .content-section { padding: 80px 0; background: var(--paper); color: #111; min-height:60vh; }
-    .content-section h2 { color: var(--muted-gold); margin-bottom: 1rem; }
-    .cards { display:flex; gap:1rem; flex-wrap:wrap; }
-    .card { flex:1 1 280px; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,248,246,0.95)); padding:18px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.06); }
-    .hidden { opacity:0; transform: translateY(30px); transition: all 0.7s ease; }
-    .visible { opacity:1; transform: none; }
-    main { scroll-snap-type: y proximity; }
-    .content-section { scroll-snap-align: start; }
-  </style>
-
-  <script>
-    // Reveal sections as they enter the viewport
-    document.addEventListener('DOMContentLoaded', function(){
-      const observer = new IntersectionObserver((entries)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            entry.target.classList.remove('hidden');
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.15 });
-
-      document.querySelectorAll('.content-section').forEach(el=>observer.observe(el));
-
-      // Mobile nav toggle
-      const navBurger = document.getElementById('navBurger');
-      const mobileNav = document.getElementById('mobileNav');
-      if(navBurger && mobileNav){
-        navBurger.addEventListener('click', ()=>{
-          mobileNav.classList.toggle('open');
-          const opened = mobileNav.classList.contains('open');
-          mobileNav.setAttribute('aria-hidden', !opened);
-        });
-
-        // close when link clicked
-        mobileNav.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileNav.classList.remove('open')));
+      if (method === 'whatsapp') {
+        const text = encodeURIComponent(
+          `Hello MountElevators,\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`
+        );
+        const whatsappUrl = `https://wa.me/919844217057?text=${text}`;
+        window.open(whatsappUrl, '_blank');
+        status.textContent = 'Your WhatsApp message is opening in a new tab.';
+        return;
       }
 
-      // Contact form submit with fetch
-      const contactForm = document.getElementById('contactForm');
-      if(contactForm){
-        contactForm.addEventListener('submit', async (e)=>{
-          e.preventDefault();
-          const data = new FormData(contactForm);
-          const payload = {};
-          data.forEach((v,k)=> payload[k]=v);
-          const status = document.getElementById('contactStatus');
-          try{
-            const res = await fetch('/submit_contact', { method:'POST', body: data });
-            const json = await res.json();
-            if(json.status === 'success'){
-              status.textContent = json.message;
-              contactForm.reset();
-            } else {
-              status.textContent = json.message || 'Error sending message';
-            }
-          }catch(err){ status.textContent = 'Network error'; }
-        });
-      }
+      const mailto = `mailto:info@mountelevators.com?subject=${encodeURIComponent('Contact Request from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\nPhone: ' + phone + '\n\nMessage:\n' + message)}`;
+      window.location.href = mailto;
+      status.textContent = 'Your email client is opening. If it does not open, please use info@mountelevators.com directly.';
     });
   </script>
 </body>
