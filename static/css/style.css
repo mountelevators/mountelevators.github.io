@@ -854,7 +854,7 @@ a {
     text-align: center;
     position: relative;
     border-bottom: 1px solid rgba(255,215,0,0.03);
-    background-image: url('/static/standard_image/hero_with_logo.png');
+    background-image: url('static/standard_image/hero_with_logo.png');
     background-size: cover;
     background-position: center center;
     background-blend-mode: overlay;
@@ -883,7 +883,7 @@ a {
 
 .home-dark .stacked-bg {
     position: relative;
-    background-image: url('/static/standard_image/lift_without_logo.png');
+    background-image: url('static/standard_image/lift_without_logo.png');
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
