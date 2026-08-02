@@ -1,321 +1,504 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mount Elevators | Elevators & Lift Solutions</title>
-<meta name="description" content="Mount Elevators - Installation, Modernization, AMC & Repair Services for Residential and Commercial Lifts.">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-body{
-    color:#333;
-    line-height:1.6;
-}
-header{
-    background:#0b4f9c;
-    color:#fff;
-    padding:18px 8%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:sticky;
-    top:0;
-}
-.logo{
-    font-size:28px;
-    font-weight:bold;
-}
-nav a{
-    color:white;
-    text-decoration:none;
-    margin-left:20px;
-}
-.hero{
-    background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.55)),
-    url('https://images.unsplash.com/photo-1529429617124-aee711a5ac1f?auto=format&fit=crop&w=1600&q=80') center/cover;
-    color:white;
-    text-align:center;
-    padding:120px 20px;
-}
-.hero h1{
-    font-size:48px;
-}
-.hero p{
-    font-size:20px;
-    margin:20px 0;
-}
-.btn{
-    display:inline-block;
-    padding:14px 28px;
-    background:#ff9800;
-    color:white;
-    text-decoration:none;
-    border-radius:6px;
-    margin:8px;
-}
-section{
-    padding:70px 8%;
-}
-.section-title{
-    text-align:center;
-    margin-bottom:40px;
-    color:#0b4f9c;
-    font-size:34px;
-}
-.services{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-.card{
-    background:#fff;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,.1);
-    transition:.3s;
-}
-.card:hover{
-    transform:translateY(-8px);
-}
-.card h3{
-    color:#0b4f9c;
-    margin-bottom:10px;
-}
-.about{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
-}
-.about img{
-    width:100%;
-    border-radius:10px;
-}
-.contact{
-    background:#f4f4f4;
-}
-form{
-    max-width:650px;
-    margin:auto;
-}
-input,textarea{
-    width:100%;
-    padding:15px;
-    margin-bottom:15px;
-    border:1px solid #ccc;
-    border-radius:6px;
-}
-button{
-    width:100%;
-    background:#0b4f9c;
-    color:white;
-    border:none;
-    padding:15px;
-    font-size:18px;
-    border-radius:6px;
-    cursor:pointer;
-}
-footer{
-    background:#0b4f9c;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-.floating{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-}
-.floating a{
-    display:block;
-    margin-top:10px;
-    text-decoration:none;
-    color:white;
-    padding:14px 20px;
-    border-radius:50px;
-    text-align:center;
-    font-weight:bold;
-}
-.call{
-    background:#0b4f9c;
-}
-.whatsapp{
-    background:#25D366;
-}
-@media(max-width:768px){
-.about{
-grid-template-columns:1fr;
-}
-.hero h1{
-font-size:34px;
-}
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mount Elevators — Hero</title>
+  <link rel="stylesheet" href="/static/css/style.css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Minimal overrides for the hero page */
+    html, body { height: 100%; }
+    body { margin:0; padding:0; background-color:#000; background-image: url('/static/standard_image/hero_with_logo.png'); background-size: cover; background-position: center center; background-repeat: no-repeat; }
+    .hero-canvas-wrap { position: relative; width: 100%; height: 100vh; overflow: hidden; background: transparent; }
+    #hero-canvas { width: 100%; height: 100%; display: block; }
+    .hero-overlay-content { position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; z-index:3; pointer-events:none }
+    .hero-logo { pointer-events:auto; text-align:center; color:#ffdca6; }
+    .hero-logo h1 { font-size: 4rem; color: #ffdca6; margin-bottom: 8px; }
+    .hero-sub { color:rgba(255,220,166,0.85); font-size:1.1rem }
+    .hero-cta { margin-top:18px; pointer-events:auto }
+    .hero-cta a { margin:0 8px }
+  </style>
 </head>
+<body class="home-dark">
+  <header class="site-header">
+    <div class="nav-container">
+      <a class="nav-logo" href="/">
+        <img src="/static/standard_image/Logo.png" alt="Mount Elevators" style="height:44px;" />
+      </a>
+      <button id="navBurger" class="nav-burger" aria-label="Toggle menu">☰</button>
+    </div>
+    <nav id="mobileNav" class="mobile-nav" aria-hidden="true">
+      <a href="#services">Services</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+    </nav>
+  </header>
+  <div class="hero-canvas-wrap">
+    <!-- background image is applied to body for reliable display across browsers -->
 
-<body>
+    <!-- No overlay: keep hero image only as requested -->
+  </div>
 
-<header>
-<div class="logo">Mount Elevators</div>
+  <!-- Page sections revealed on scroll -->
+  <main>
+    <div class="stacked-bg home-dark" >
+        
+      <section id="services" class="services-section content-section hidden">
+          <div class="container">
+              <div class="services-grid">
+                  {% for service in services %}
+                  <div class="service-card detailed">
+                      <div class="service-icon">
+                          <i class="fas fa-{{ 'wrench' if service.icon == 'install' else 'cogs' if service.icon == 'maintenance' else 'arrow-up' if service.icon == 'upgrade' else 'ambulance' }}"></i>
+                      </div>
+                      <h3>{{ service.title }}</h3>
+                      <p>{{ service.description }}</p>
+                      <div class="service-footer">
+                          <a href="#contact" class="btn btn-primary">Get Quote</a>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </section>
 
-<nav>
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#contact">Contact</a>
-</nav>
+      <section id="products" class="products-section content-section hidden">
+      <div class="container">
+        <div class="product-filters" style="margin-bottom:18px;">
+          <div class="filter-buttons">
+            <a href="#products" class="filter-btn active">All Products</a>
+            <a href="#products" class="filter-btn">Residential</a>
+            <a href="#products" class="filter-btn">Commercial</a>
+          </div>
+        </div>
 
-</header>
+        <div class="products-grid">
+          {% set all_elevators = elevators['residential'] + elevators['commercial'] %}
+          {% for elevator in all_elevators %}
+          <div class="product-card detailed">
+            <div class="product-image">
+              <div class="placeholder-image">
+                {% if elevator.id <= 2 %}
+                <i class="fas fa-home"></i>
+                {% else %}
+                <i class="fas fa-city"></i>
+                {% endif %}
+              </div>
+              <div class="product-overlay">
+                <a href="#contact" class="btn btn-primary btn-small">Enquire</a>
+              </div>
+            </div>
+            <div class="product-info">
+              <div class="product-category">{% if elevator.id <= 2 %}Residential{% else %}Commercial{% endif %}</div>
+              <h3>{{ elevator.name }}</h3>
+              <div class="product-specs">
+                <div class="spec"><i class="fas fa-users"></i><span>{{ elevator.capacity }}</span></div>
+                <div class="spec"><i class="fas fa-tachometer-alt"></i><span>{{ elevator.speed }}</span></div>
+              </div>
+              <div class="product-features">
+                {% for feature in elevator.features %}
+                <span class="feature-tag">{{ feature }}</span>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
 
-<section class="hero">
+      <section id="contact" class="content-section hidden">
+        <div class="container">
+          <h2>Contact</h2>
+        <div class="contact-form-container">
+          <form id="contactForm" class="contact-form">
+            <div class="form-row">
+              <div class="form-group">
+                <input name="name" placeholder="Name" required />
+              </div>
+              <div class="form-group">
+                <input name="email" type="email" placeholder="Email" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <input name="phone" placeholder="Phone" />
+              </div>
+              <div class="form-group">
+                <input name="company" placeholder="Company" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="width:100%;">
+                <select name="service_type">
+                  <option value="">Select Service</option>
+                  {% for s in services %}
+                  <option value="{{ s.title }}">{{ s.title }}</option>
+                  {% endfor %}
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group" style="width:100%;">
+                <textarea name="message" rows="4" placeholder="Message"></textarea>
+              </div>
+            </div>
+            <div class="form-row" style="justify-content:flex-start; gap:1rem;">
+              <button type="submit" class="btn btn-primary">Send</button>
+              <span id="contactStatus"></span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
-<h1>Safe. Reliable. Modern.</h1>
+      <section id="reviews" class="content-section hidden">
+        <div class="container">
+          <h2>Reviews</h2>
+        <div class="cards">
+          {% for r in reviews %}
+          <div class="card">
+            <h3>{{ r.name }} — {{ r.rating }}/5</h3>
+            <p>{{ r.message }}</p>
+            <small>{{ r.date }}</small>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
 
-<p>Professional Elevator Installation, Maintenance & Repair Services</p>
+      <section id="about" class="about-section content-section hidden">
+        <div class="container">
+        <div class="story-content">
+          <div class="story-text">
+            <h2>About MountElevators</h2>
+            <p>Leading the elevator industry with innovation, quality, and exceptional service since {{ company_info.founded }}.</p>
+            <p>Founded in {{ company_info.founded }}, MountElevators began as a small family business with a vision to transform vertical transportation. What started as a local elevator service company has grown into a trusted leader in elevator technology and innovation.</p>
+            <p>Over the years, we have consistently pushed the boundaries of what&apos;s possible in elevator design and functionality. Our commitment to safety, efficiency, and customer satisfaction has made us the preferred choice for residential and commercial elevator solutions.</p>
+            <p>Today, we serve clients across India, with a team of {{ company_info.team_size }} dedicated professionals who share our passion for excellence and innovation in vertical transportation.</p>
+          </div>
+          <div class="story-image">
+            <img src="/static/standard_image/Logo.png" alt="MountElevators Logo" style="width: 100%; height: auto; object-fit: contain; border-radius: 20px;" />
+          </div>
+        </div>
 
-<a href="tel:+919844217057" class="btn">Call Now</a>
+        <div class="company-stats">
+          <div class="stats-grid">
+            <div class="stat-card stat-count">
+              <div class="stat-icon"><i class="fas fa-calendar-alt"></i></div>
+              <div class="stat-number" data-target="{{ company_info.founded }}">0</div>
+              <div class="stat-label">Founded</div>
+            </div>
+            <div class="stat-card stat-count">
+              <div class="stat-icon"><i class="fas fa-project-diagram"></i></div>
+              <div class="stat-number" data-target="{{ company_info.projects_completed }}">0</div>
+              <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-card stat-count">
+              <div class="stat-icon"><i class="fas fa-users"></i></div>
+              <div class="stat-number" data-target="{{ company_info.team_size }}">0</div>
+              <div class="stat-label">Team Members</div>
+            </div>
+            <div class="stat-card stat-count">
+              <div class="stat-icon"><i class="fas fa-globe"></i></div>
+              <div class="stat-number" data-target="{{ company_info.countries }}">0</div>
+              <div class="stat-label">Countries Served</div>
+            </div>
+          </div>
+        </div>
 
-<a href="https://wa.me/919844217057" class="btn">WhatsApp</a>
+        <div class="mission-vision">
+          <div class="mv-grid">
+            <div class="mv-card">
+              <div class="mv-icon"><i class="fas fa-bullseye"></i></div>
+              <h3>Our Mission</h3>
+              <p>To provide safe, reliable, and innovative elevator solutions that enhance quality of life and accessibility worldwide. We strive to exceed customer expectations through superior products, exceptional service, and continuous innovation.</p>
+            </div>
+            <div class="mv-card">
+              <div class="mv-icon"><i class="fas fa-eye"></i></div>
+              <h3>Our Vision</h3>
+              <p>To be the world&apos;s most trusted and innovative elevator company, setting new standards for safety, sustainability, and smart technology in vertical transportation while creating value for our customers, employees, and communities.</p>
+            </div>
+          </div>
+        </div>
 
-</section>
+        <div class="core-values">
+          <h2>Our Core Values</h2>
+          <div class="values-grid">
+            <div class="value-card">
+              <div class="value-icon"><i class="fas fa-shield-alt"></i></div>
+              <h4>Safety First</h4>
+              <p>Safety is our top priority in everything we do. We maintain the highest standards and continuously innovate to protect our customers.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><i class="fas fa-star"></i></div>
+              <h4>Excellence</h4>
+              <p>We strive for excellence in every aspect of our business, from product design to customer service.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><i class="fas fa-lightbulb"></i></div>
+              <h4>Innovation</h4>
+              <p>We embrace innovation and technology to create smarter, more efficient elevator solutions.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><i class="fas fa-handshake"></i></div>
+              <h4>Integrity</h4>
+              <p>We conduct business with honesty and transparency, building trust and long-lasting relationships.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><i class="fas fa-leaf"></i></div>
+              <h4>Sustainability</h4>
+              <p>We are committed to environmental responsibility, developing energy-efficient solutions that minimize our footprint.</p>
+            </div>
+            <div class="value-card">
+              <div class="value-icon"><i class="fas fa-heart"></i></div>
+              <h4>Customer Focus</h4>
+              <p>Our customers are at the center of everything we do. We listen, understand, and deliver solutions that exceed expectations.</p>
+            </div>
+          </div>
+        </div>
 
-<section id="about">
+        <div class="leadership-team">
+          <h2>Leadership Team</h2>
+          <div class="team-grid">
+            <div class="team-member">
+              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+              <div class="member-info"><h4>John Anderson</h4><p class="member-title">Chief Executive Officer</p><p class="member-bio">John brings over 25 years of experience in the elevator industry and leads our global operations with a focus on innovation and customer satisfaction.</p></div>
+            </div>
+            <div class="team-member">
+              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+              <div class="member-info"><h4>Sarah Chen</h4><p class="member-title">Chief Technology Officer</p><p class="member-bio">Sarah drives our technology strategy and innovation initiatives, ensuring MountElevators stays at the forefront of elevator technology.</p></div>
+            </div>
+            <div class="team-member">
+              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+              <div class="member-info"><h4>Michael Rodriguez</h4><p class="member-title">VP of Engineering</p><p class="member-bio">Michael oversees our engineering and product development teams, ensuring the highest quality and safety standards in all our elevator solutions.</p></div>
+            </div>
+            <div class="team-member">
+              <div class="member-image"><div class="placeholder-image"><i class="fas fa-user"></i></div></div>
+              <div class="member-info"><h4>Emily Johnson</h4><p class="member-title">VP of Customer Service</p><p class="member-bio">Emily leads our customer service and support operations, ensuring exceptional service delivery and customer satisfaction globally.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-<h2 class="section-title">About Us</h2>
+  <div class="floating-contacts">
+    <a href="https://wa.me/919844217057" target="_blank" class="floating-btn whatsapp-btn" data-tooltip="Chat on WhatsApp" aria-label="Contact us on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="mailto:info@mountelevators.com" class="floating-btn email-btn" data-tooltip="Send us an Email" aria-label="Send us an email">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
 
-<div class="about">
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>MountElevators</h3>
+          <p>Leading provider of premium elevator solutions worldwide. Quality, safety, and innovation in every lift.</p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="#products">Products</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#reviews">Reviews</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="#services">Installation</a></li>
+            <li><a href="#services">Maintenance</a></li>
+            <li><a href="#services">Modernization</a></li>
+            <li><a href="#contact">Emergency Repair</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Contact Info</h4>
+          <address class="contact-info" style="font-style: normal;">
+            <p><i class="fas fa-phone"></i> <a href="tel:+919844217057" style="color: inherit; text-decoration: none;">+91 9844217057</a></p>
+            <p><i class="fas fa-envelope"></i> <a href="mailto:info@mountelevators.com" style="color: inherit; text-decoration: none;">info@mountelevators.com</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> #19/5/1 - Ground Floor, 3rd Main, 2nd Cross, Pipeline Road, Kasturba Nagar, Bengaluru, Karnataka, India - 560 026</p>
+          </address>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 MountElevators. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
 
-<div>
+  <script>
+    // Reveal sections as they enter the viewport
+    document.addEventListener('DOMContentLoaded', function(){
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.remove('hidden');
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
 
-<h3>Mount Elevators</h3>
+      document.querySelectorAll('.content-section').forEach(el=>observer.observe(el));
 
-<p>
-Mount Elevators provides professional elevator installation,
-Annual Maintenance Contracts (AMC), modernization,
-and repair services for residential, commercial,
-industrial and hospital buildings.
+      // Counter animation for homepage stats
+      const countSections = document.querySelectorAll('.stat-count');
+      const animateCount = (el) => {
+        const numberEl = el.querySelector('.stat-number');
+        const target = numberEl.dataset.target;
+        if (!target || numberEl.dataset.animated) return;
 
-Our experienced engineers ensure quality workmanship,
-timely support and customer satisfaction.
-</p>
+        const normalized = target.replace('+', '');
+        const maxValue = isNaN(normalized) ? parseInt(normalized, 10) : parseInt(normalized, 10);
+        const duration = 1200;
+        let start = 0;
+        const increment = Math.ceil(maxValue / (duration / 16));
 
-</div>
+        const step = () => {
+          start += increment;
+          if (start >= maxValue) {
+            numberEl.textContent = target;
+            numberEl.dataset.animated = 'true';
+          } else {
+            numberEl.textContent = start;
+            requestAnimationFrame(step);
+          }
+        };
 
-<img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80">
+        step();
+      };
 
-</div>
+      const statObserver = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            animateCount(entry.target);
+            statObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.4 });
 
-</section>
+      countSections.forEach(el=>statObserver.observe(el));
 
-<section id="services">
+      // Mobile nav toggle
+      const navBurger = document.getElementById('navBurger');
+      const mobileNav = document.getElementById('mobileNav');
+      if(navBurger && mobileNav){
+        navBurger.addEventListener('click', ()=>{
+          mobileNav.classList.toggle('open');
+          const opened = mobileNav.classList.contains('open');
+          mobileNav.setAttribute('aria-hidden', !opened);
+        });
 
-<h2 class="section-title">Our Services</h2>
+        mobileNav.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileNav.classList.remove('open')));
+      }
 
-<div class="services">
+      // Contact form submit with fetch
+      const contactForm = document.getElementById('contactForm');
+      if(contactForm){
+        contactForm.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          const data = new FormData(contactForm);
+          const status = document.getElementById('contactStatus');
+          try{
+            const res = await fetch('/submit_contact', { method:'POST', body: data });
+            const json = await res.json();
+            if(json.status === 'success'){
+              status.textContent = json.message;
+              contactForm.reset();
+            } else {
+              status.textContent = json.message || 'Error sending message';
+            }
+          }catch(err){ status.textContent = 'Network error'; }
+        });
+      }
+    });
+  </script>
 
-<div class="card">
-<h3>Elevator Installation</h3>
-<p>Residential, Commercial & Industrial Lift Installation.</p>
-</div>
+  <style>
+    .site-header { position: fixed; top: 0; left: 0; right: 0; z-index: 60; }
+    .nav-container { max-width:1200px; margin:0 auto; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; }
+    .nav-burger { background: transparent; border: 2px solid rgba(255,255,255,0.08); color: var(--paper); font-size:20px; padding:8px 10px; border-radius:8px; }
+    .mobile-nav { position:fixed; right:12px; top:64px; background: rgba(11,11,11,0.95); color:var(--paper); border-radius:8px; padding:12px; display:flex; flex-direction:column; gap:8px; box-shadow:0 10px 30px rgba(0,0,0,0.6); opacity:0; transform: translateY(-10px) scale(0.98); transition: all 200ms ease; pointer-events:none }
+    .mobile-nav.open { opacity:1; transform:none; pointer-events:auto }
 
-<div class="card">
-<h3>AMC</h3>
-<p>Annual Maintenance Contracts for all brands of elevators.</p>
-</div>
+    .content-section { padding: 80px 0; background: var(--paper); color: #111; min-height:60vh; }
+    .content-section h2 { color: var(--muted-gold); margin-bottom: 1rem; }
+    .cards { display:flex; gap:1rem; flex-wrap:wrap; }
+    .card { flex:1 1 280px; background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,248,246,0.95)); padding:18px; border-radius:10px; box-shadow:0 8px 30px rgba(0,0,0,0.06); }
+    .hidden { opacity:0; transform: translateY(30px); transition: all 0.7s ease; }
+    .visible { opacity:1; transform: none; }
+    main { scroll-snap-type: y proximity; }
+    .content-section { scroll-snap-align: start; }
+  </style>
 
-<div class="card">
-<h3>Modernization</h3>
-<p>Upgrade old elevators with latest technology.</p>
-</div>
+  <script>
+    // Reveal sections as they enter the viewport
+    document.addEventListener('DOMContentLoaded', function(){
+      const observer = new IntersectionObserver((entries)=>{
+        entries.forEach(entry=>{
+          if(entry.isIntersecting){
+            entry.target.classList.remove('hidden');
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
 
-<div class="card">
-<h3>Emergency Repairs</h3>
-<p>Fast response repair services to minimize downtime.</p>
-</div>
+      document.querySelectorAll('.content-section').forEach(el=>observer.observe(el));
 
-</div>
+      // Mobile nav toggle
+      const navBurger = document.getElementById('navBurger');
+      const mobileNav = document.getElementById('mobileNav');
+      if(navBurger && mobileNav){
+        navBurger.addEventListener('click', ()=>{
+          mobileNav.classList.toggle('open');
+          const opened = mobileNav.classList.contains('open');
+          mobileNav.setAttribute('aria-hidden', !opened);
+        });
 
-</section>
+        // close when link clicked
+        mobileNav.querySelectorAll('a').forEach(a=> a.addEventListener('click', ()=> mobileNav.classList.remove('open')));
+      }
 
-<section class="contact" id="contact">
-
-<h2 class="section-title">Contact Us</h2>
-
-<form id="contactForm">
-
-<input type="text" id="name" placeholder="Your Name" required>
-
-<input type="tel" id="phone" placeholder="Mobile Number" required>
-
-<input type="email" id="email" placeholder="Email Address">
-
-<textarea id="message" rows="5" placeholder="Tell us about your requirement"></textarea>
-
-<button type="submit">
-Send via WhatsApp
-</button>
-
-</form>
-
-</section>
-
-<footer>
-
-<h3>Mount Elevators</h3>
-
-<p>📞 +91 98442 17057</p>
-
-<p>Professional Lift Installation • AMC • Repairs • Modernization</p>
-
-<p>© 2026 Mount Elevators. All Rights Reserved.</p>
-
-</footer>
-
-<div class="floating">
-
-<a class="call" href="tel:+919844217057">
-📞 Call Now
-</a>
-
-<a class="whatsapp" href="https://wa.me/919844217057">
-WhatsApp
-</a>
-
-</div>
-
-<script>
-document.getElementById("contactForm").addEventListener("submit", function(e){
-
-e.preventDefault();
-
-let name=document.getElementById("name").value;
-let phone=document.getElementById("phone").value;
-let email=document.getElementById("email").value;
-let message=document.getElementById("message").value;
-
-let text=
-`New Inquiry from Website
-
-Name: ${name}
-Phone: ${phone}
-Email: ${email}
-
-Requirement:
-${message}`;
-
-let url="https://wa.me/919844217057?text="+encodeURIComponent(text);
-
-window.open(url,"_blank");
-
-});
-</script>
-
+      // Contact form submit with fetch
+      const contactForm = document.getElementById('contactForm');
+      if(contactForm){
+        contactForm.addEventListener('submit', async (e)=>{
+          e.preventDefault();
+          const data = new FormData(contactForm);
+          const payload = {};
+          data.forEach((v,k)=> payload[k]=v);
+          const status = document.getElementById('contactStatus');
+          try{
+            const res = await fetch('/submit_contact', { method:'POST', body: data });
+            const json = await res.json();
+            if(json.status === 'success'){
+              status.textContent = json.message;
+              contactForm.reset();
+            } else {
+              status.textContent = json.message || 'Error sending message';
+            }
+          }catch(err){ status.textContent = 'Network error'; }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
