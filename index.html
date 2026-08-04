@@ -803,6 +803,29 @@
   </main>
 
   <script>
+    (function(){
+      const pathParts = location.pathname.split('/');
+      const base = (pathParts.length > 1 && pathParts[1]) ? '/' + pathParts[1] + '/' : '/';
+
+      // Fix link hrefs that reference local static files so they work on project pages
+      document.querySelectorAll('link[href^="./static/"], link[href^="static/"]').forEach(l => {
+        const original = l.getAttribute('href');
+        l.href = base + original.replace(/^\.\/?/, '');
+      });
+
+      // Fix image src attributes
+      document.querySelectorAll('img[src^="./static/"], img[src^="static/"]').forEach(img => {
+        const original = img.getAttribute('src');
+        img.src = base + original.replace(/^\.\/?/, '');
+      });
+
+      // Ensure the page background image works when served from a nested repo path
+      const body = document.body;
+      const gradient = 'linear-gradient(10deg, rgba(5, 5, 5, 0.427), rgba(13, 13, 13, 0.326)),';
+      const bg = base + 'static/standard_image/hero_with_logo.png';
+      body.style.background = `${gradient} url('${bg}') center/cover no-repeat fixed`;
+    })();
+
     const form = document.getElementById('contactForm');
     const status = document.getElementById('contactStatus');
 
