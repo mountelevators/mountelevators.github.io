@@ -841,7 +841,8 @@
     const navLinks = document.getElementById('navLinks');
     const currentPath = window.location.pathname.toLowerCase();
 
-    if (currentPath === '/contacts' || currentPath === '/contact') {
+    if (['/contacts', '/contact', '/contacts/', '/contact/'].includes(currentPath)) {
+      history.replaceState(null, '', '/#contact');
       window.location.replace('/#contact');
     }
 
