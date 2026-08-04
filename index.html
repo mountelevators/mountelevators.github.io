@@ -839,6 +839,11 @@
 
     const navBurger = document.getElementById('navBurger');
     const navLinks = document.getElementById('navLinks');
+    const currentPath = window.location.pathname.toLowerCase();
+
+    if (currentPath === '/contacts' || currentPath === '/contact') {
+      window.location.replace('/#contact');
+    }
 
     navBurger.addEventListener('click', () => {
       navLinks.classList.toggle('mobile-open');
